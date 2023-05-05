@@ -1,0 +1,20 @@
+
+<div class="offcanvas offcanvas-start bg-dark text-light" tabindex="-1" id="LoansMenu" style="width: 30%;">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" >Available Loans</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" ></button>
+    </div>
+    <div class="offcanvas-body">
+        <button class="btn btn-outline-info btn-sm" type="button" (click)="CreateLoan()" >Review Loan Application</button> 
+        <button class="btn btn-outline-danger btn-sm" type="button" (click)="ClearLoans()" >Deny All Applications</button> 
+       <table style="width: 85%;">
+        <th (click)="SortByCost();">Offer Cost</th>
+        <th (click)="SortByPayments();">Total Payments</th>
+        <th (click)="SortByValue();">Total Value</th>
+        <th>Accept</th>
+        <tr *ngFor="let loan of Loans;"><td>{{loan.cost}}</td><td>{{loan.payments}}</td><td>{{loan.value}}</td><td><button class="btn btn-sm btn-outline-success" type="button" (click)="AcceptLoan(loan.id)" >Accept</button></td></tr>
+       </table>
+      </div>
+      <span class="text-warning position-absolute top-0 start-50">Click Table Headers to Sort</span>
+</div>
+ 

@@ -1,0 +1,16 @@
+<div class="offcanvas offcanvas-end bg-dark text-light" tabindex="-1" id="PaymentsMenu">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" >Pending Payments</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" ></button>
+    </div>
+    <div class="offcanvas-body">
+      
+      <table style="width: 85%;">
+        <th>Payment Due</th>
+        <th>Time Remaining</th>
+        
+        <tr *ngFor="let Payment of Payments;"><td>{{Payment.amount}}</td><td>{{GetTimeLeft(Payment)}}</td></tr>
+       </table>
+      </div>
+</div>
+ 
