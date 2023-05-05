@@ -20,7 +20,7 @@ export class AppComponent {
   every30Seconds: Observable<number> = timer(0, 30000);
    
   ngOnInit() {
-    //this.gameData.LoadGame();
+    
     this.subscription = this.every500mSeconds.subscribe(() => {
        this.UpdatePlayerMoney();
        this.gameData.Payouts();

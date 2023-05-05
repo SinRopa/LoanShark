@@ -22,6 +22,8 @@ export class GamedataService {
       if (typeof savegame.Loans !== "undefined") this.Loans = savegame.Loans;
       if (typeof savegame.Payments !== "undefined") this.Payments = savegame.Payments;
       if (typeof savegame.PlayerMoney !== "undefined") this.PlayerMoney = savegame.PlayerMoney;
+
+      console.log(savegame);
       }
 
       
@@ -37,7 +39,7 @@ export class GamedataService {
     }
     
     localStorage.setItem("save",JSON.stringify(saveData));
-    //$('#Toast_Saved').toast('show');
+    
 
   }
 
@@ -64,7 +66,7 @@ export class GamedataService {
       {
         id: Guid.create(),
         amount: payAmount,
-        time: moment(BoughtTime).add(index +1, 'm' ).toDate()
+        time: moment(BoughtTime).add(index +1, 'm' ).toDate().getTime()
       }
       this.Payments.push(result);
     }
@@ -82,7 +84,7 @@ export class GamedataService {
   this.SortPaymentByTime();
 
    
-  if(this.Payments[0].time.getTime()-Date.now() < 500)
+  if(this.Payments[0].time-Date.now() < 500)
   {
       let payout = this.Payments.shift();
       if(typeof(payout) == 'undefined') {return;}
@@ -119,7 +121,7 @@ export class GamedataService {
   SortLoansByPayments(){this.Loans.sort((a,b)=> a.payments - b.payments);}
   SortLoansByValue(){this.Loans.sort((a,b)=> a.value - b.value);}
 
-  SortPaymentByTime(){this.Payments.sort((a,b)=> a.time.getTime() - b.time.getTime()); }
+  SortPaymentByTime(){this.Payments.sort((a,b)=> a.time - b.time); }
 
   getRandomInt(min:number, max:number) {
     min = Math.ceil(min);
@@ -133,7 +135,7 @@ export class GamedataService {
 export interface IPayment {
   id:Guid;
   amount: number;
-  time: Date;
+  time: number;
 }
 
 export interface ILoan {
@@ -142,11 +144,4 @@ export interface ILoan {
   value:number;
   payments:number;
 
-}
-
-export interface ISaveData
-{
-  Loans: ILoan[],
-  Payments: IPayment[],
-  PlayerMoney: number
 }

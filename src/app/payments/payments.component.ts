@@ -12,28 +12,14 @@ export class PaymentsComponent {
 
   
   constructor(private gameData: GamedataService) {}
-/*   subscription: Subscription = new Subscription;
-  every500mSeconds: Observable<number> = timer(0, 500);
-  
-  ngOnInit() {
-    this.subscription = this.every500mSeconds.subscribe(() => {
-       this.gameData.SortPaymentByTime();
-     });
-   } 
-  
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }*/
+
 
   Payments: IPayment[] = this.gameData.Payments;
 
   GetTimeLeft(Payment:IPayment)
   {
-      
-
-      return moment(Payment.time).fromNow();
-
-
+    return moment(Payment.time).fromNow();
+    
   }
 
 
