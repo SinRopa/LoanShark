@@ -15,7 +15,7 @@ export class GamedataService {
   public LoadGame()
   {
 
-    const value = localStorage.getItem("save");
+    const value = localStorage.getItem("save_LoanShark");
     if (typeof value === 'string') {
       const savegame = JSON.parse(value);
 
@@ -38,7 +38,7 @@ export class GamedataService {
       PlayerMoney: this.PlayerMoney,
     }
     
-    localStorage.setItem("save",JSON.stringify(saveData));
+    localStorage.setItem("save_LoanShark",JSON.stringify(saveData));
     
 
   }
