@@ -10,7 +10,20 @@ export class GamedataService {
 
   constructor() { this.LoadGame()}
 
-  
+  public Reg()
+{
+  let value = localStorage.getItem("reg_data");
+  if(typeof value === 'string'){
+    let regSave = JSON.parse(value);
+    regSave.loanshark = 1;
+    localStorage.setItem("reg_data", JSON.stringify(regSave));
+  }
+  else {
+    let newRegSave = {loanshark:1};
+    localStorage.setItem("reg_data", JSON.stringify(newRegSave));
+  }
+
+}
 
   public LoadGame()
   {
@@ -23,9 +36,8 @@ export class GamedataService {
       if (typeof savegame.Payments !== "undefined") this.Payments = savegame.Payments;
       if (typeof savegame.PlayerMoney !== "undefined") this.PlayerMoney = savegame.PlayerMoney;
 
-      console.log(savegame);
       }
-
+      this.Reg();
       
   }
 
